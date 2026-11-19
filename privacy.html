@@ -17,8 +17,8 @@
   <ul>
     <li>Hush has no accounts of its own, and no analytics, ads or trackers.</li>
     <li>You log in on Instagram's own page. Your password goes to Instagram, never to Hush.</li>
-    <li>Your messages stay between your phone and Instagram. Hush's notification server passes
-      them on still encrypted and can't read them.</li>
+    <li>Your messages stay between your phone and Instagram. Notifications reach your phone
+      encrypted, and we can't read them.</li>
     <li>Signing out of an account in Hush deletes what Hush kept for it.</li>
   </ul>
 </div>
@@ -33,9 +33,6 @@ password into Instagram's login page, and they go straight to Instagram. What yo
 (your messages, stories, profile, who you follow) goes between your phone and Instagram, as it
 does in a web browser. Instagram's use of that information is covered by
 <a href="https://privacycenter.instagram.com/policy">Instagram's Privacy Policy</a>, not this one.</p>
-<p>To notify you about new messages, Hush registers your phone with Instagram's web notifications,
-as a browser does. Instagram is given an address to send notifications to and the public keys that
-encrypt them.</p>
 
 <h2>What stays on your phone</h2>
 <p>Hush keeps these on your phone only. We never receive them.</p>
@@ -51,24 +48,15 @@ encrypt them.</p>
 </ul>
 
 <h2>Notifications</h2>
-<p>Instagram only sends web notifications to established push services, so Hush uses a small
-server of ours (the "relay") to pass them on to your iPhone:</p>
-<ul>
-  <li>Instagram encrypts each notification with your phone's keys and sends it to Mozilla's push
-    service, which passes it to our relay. Mozilla's handling is covered by
-    <a href="https://www.mozilla.org/privacy/">Mozilla's Privacy Notice</a>.</li>
-  <li>The relay forwards it, still encrypted, to Apple's push service, which delivers it to your
-    phone. Only your phone can decrypt it.</li>
-</ul>
-<p>For each account on each phone, the relay stores your phone's Apple push token, the push channel
-it forwards, a random ID that Hush made for the account (not your Instagram username or ID), a
-hashed secret and the time it was set up. It doesn't receive your messages' contents, your keys,
-your Instagram login or your username.</p>
-<p>The relay runs on <a href="https://fly.io/legal/privacy-policy">Fly.io</a> in Canada. Like any
-web server, it and its host see your phone's IP address when the app connects. Its logs record
-requests and errors, never message contents, and are kept only briefly.</p>
-<p>The relay's record for an account is deleted when you sign out of that account in Hush, or when
-Apple reports that the app was removed or notifications were turned off for good.</p>
+<p>If you turn on notifications, Hush uses a server of ours to deliver them to your iPhone. For
+this, the server stores your device's push notification token and a random identifier for each
+account, not your Instagram username, login or messages. Notifications pass through it encrypted,
+and only your phone can decrypt them.</p>
+<p>The server is hosted in Canada. Our hosting provider and Apple's push notification service
+process this data only to deliver notifications. Like any server, ours sees your IP address when
+the app connects; its logs never contain message contents and are kept only briefly.</p>
+<p>This data is deleted when you sign out of the account in Hush, or when notifications stop
+reaching your device (for example, after you delete Hush or turn notifications off).</p>
 
 <h2>Purchases</h2>
 <p>Hush+ is bought through Apple. Apple handles the payment, and we never see your payment details.
@@ -85,10 +73,10 @@ Hush only checks with Apple, on your phone, whether your subscription is active.
 <h2>Your choices</h2>
 <ul>
   <li><strong>Sign out</strong> (Settings → Accounts) deletes an account's login session, cached
-    images, notification keys and relay record from Hush. Your Instagram account itself isn't
+    images, notification keys and server record from Hush. Your Instagram account itself isn't
     changed.</li>
-  <li><strong>Delete Hush</strong> to remove everything it kept on your phone. The relay's records
-    are deleted the next time Instagram tries to notify you there.</li>
+  <li><strong>Delete Hush</strong> to remove everything it kept on your phone. Our server's records
+    for it are deleted once notifications stop reaching your device.</li>
   <li>Turn notifications off in iOS Settings at any time.</li>
   <li>To have your Instagram data deleted, use Instagram's own settings.</li>
 </ul>
